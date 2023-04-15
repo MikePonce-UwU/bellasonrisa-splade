@@ -17,11 +17,14 @@
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                     <x-splade-table :for="$users">
                         @cell('name', $user)
+                        <img class="h-8 w-8 rounded-full object-cover mr-2"
+                                            src="{{ $user->profile_photo_url }}"
+                                            alt="{{ $user->name }}">
                             {{ str($user->name)->title() }}
                         @endcell
                         @cell('accion', $user)
                             <div class="">
-                                <x-splade-link class="text-red-600 font-bold text-sm mx-2" :href="route('users.destroy', $user)" method="delete"
+                                <x-splade-link class="text-red-500 font-bold text-sm mx-2" :href="route('users.destroy', $user)" method="delete"
                                     confirm="Borrando Registro"
                                     confirm-text="Estás seguro de continuar? Una vez que des 'click' a continuar, no habrá marcha atrás."
                                     confirm-button="Sí, continuar" cancel-button="No, vuelve atrás">Delete</x-splade-link>
@@ -35,7 +38,7 @@
     <x-splade-modal name="nuevoUserModal">
         <h2 class="font-bold text-xl text-gray-800 mb-6">Nuevo registro</h2>
         <x-splade-form :action="route('users.store')" method="post">
-            <x-splade-input name="nombre_completo" label="Nombre de user" class="mb-2" />
+            <x-splade-input name="name" label="Nombre de user" class="mb-2" />
             <x-splade-input name="email" type="email" label="Correo electrónico" class="mb-2" />
             <x-splade-input name="password" type="password" label="Contraseña" class="mb-2" />
             <x-splade-input name="password_confirmation" type="password" label="Confirmar contraseña" class="mb-2" />
@@ -43,7 +46,7 @@
                 <x-splade-radio name="sexo" value="m" label="Masculino" />
                 <x-splade-radio name="sexo" value="f" label="Femenino" />
             </x-splade-group> --}}
-            <x-splade-select label="Seleccione el rol:" name="roles" :options="$roles" relation
+            <x-splade-select label="Seleccione el rol:" name="roles" :options="$roles" multiple choices relation
                 placeholder="Seleccione un rol..." class="mb-2" />
             <x-splade-button secondary class="mt-4" @click.prevent="form.restore">
                 Reiniciar

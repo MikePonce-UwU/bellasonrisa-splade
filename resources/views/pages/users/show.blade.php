@@ -1,4 +1,4 @@
-@seoTitle(__('Ver un tutor'))
+@seoTitle(__('Ver un usuario'))
 
 <x-app-layout>
     <x-slot name="header">
@@ -11,18 +11,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-xl sm:rounded-lg">
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
-                    <x-splade-form :default="$tutor" method="put" :action="route('tutors.update', $tutor)">
-                        <x-splade-input name="id" label="id" class="mb-2 hidden" disabled />
-                        <x-splade-input name="nombre_completo" label="Nombre de Tutor" class="mb-2" :value="str($tutor->nombre_completo)->lower()" />
-                        <x-splade-input name="email" email label="Correo electrónico" class="mb-2" />
-                        <x-splade-input name="password" password label="Contraseña" class="mb-2" />
-                        <x-splade-input name="password_confirmation" password label="Confirmar contraseña" class="mb-2" />
-                        <x-splade-group name="sexo" label="Sexo del tutor" :show-errors="true" class="mb-2">
-                            <x-splade-radio name="sexo" value="m" label="Masculino" />
-                            <x-splade-radio name="sexo" value="f" label="Femenino" />
-                        </x-splade-group>
-                        {{-- <x-splade-select label="Seleccione el alumno de quien es padre:" name="student"
-                            :options="$students" option-label="nombre_completo" option-value="id" relation placeholder="Seleccione un estudiante..." class="mb-2" /> --}}
+                    <x-splade-form :default="$user" method="put" :action="route('users.update', $user)">
+                        <x-splade-input name="id" class="mb-2 hidden" />
+                        <x-splade-input name="name" label="Nombre de usuario" class="mb-2" />
+                        <x-splade-input name="email" type="email" label="Correo electrónico" class="mb-2" />
+                        <x-splade-input name="password" type="password" label="Contraseña" class="mb-2" />
+                        <x-splade-input name="password_confirmation" type="password" label="Confirmar contraseña"
+                            class="mb-2" />
+                        {{-- <x-splade-group name="sexo" label="Sexo del user" :show-errors="true" class="mb-2">
+                <x-splade-radio name="sexo" value="m" label="Masculino" />
+                <x-splade-radio name="sexo" value="f" label="Femenino" />
+            </x-splade-group> --}}
+                        <x-splade-select label="Seleccione el rol:" name="roles" :options="$roles" multiple choices relation
+                            placeholder="Seleccione un rol..." class="mb-2" />
                         <x-splade-button secondary class="mt-4" @click.prevent="form.restore">
                             Reiniciar
                         </x-splade-button>

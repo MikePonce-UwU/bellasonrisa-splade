@@ -49,10 +49,10 @@ class Subjects extends AbstractTable
     {
         $table
             ->withGlobalSearch(columns: ['nombre_largo', 'nombre_corto'])
-            ->column('id', label: '#', sortable: true, alignment: 'center', canBeHidden: false)
-            ->column('nombre_corto', label: 'Acrónimo', sortable: true, alignment: 'center')
-            ->column('nombre_largo', label: 'Nombre de la clase', sortable: true, alignment: 'center')
-            ->column('grades_count', label: 'Grados', sortable: false, alignment: 'center')
+            ->column('id', label: '#', sortable: true, alignment: 'right', canBeHidden: false)
+            ->column('nombre_corto', label: 'Acrónimo', sortable: true)
+            ->column('nombre_largo', label: 'Nombre de la clase', sortable: true)
+            ->column('grades_count', label: 'Grados', sortable: false)
             ->rowLink(function(Subject $subject) {
                 return route('subjects.show', $subject);
             })

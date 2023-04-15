@@ -38,8 +38,6 @@ class TutorController extends Controller
      */
     public function store(StoreTutorRequest $request)
     {
-        //
-        // dd($request->safe());
         $tutor = Tutor::create([
             'nombre_completo' => $request->safe()->nombre_completo,
             'email' => $request->safe()->email,

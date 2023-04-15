@@ -49,11 +49,11 @@ class Tutors extends AbstractTable
     {
         $table
             ->withGlobalSearch(columns: ['nombre_completo', 'email'])
-            ->column('id', label: '#', sortable: true, canBeHidden: false, alignment: 'center')
-            ->column('nombre_completo', label: 'Nombre Completo', sortable: true, searchable: true, alignment: 'center')
-            ->column('email', label: 'Correo Electrónico', sortable: true, searchable: true, alignment: 'center')
-            ->column('student.nombre_completo', label: 'Estudiante familiar', sortable: true, searchable: true, alignment: 'center')
-            ->column('accion', label: 'Acciones', canBeHidden: false, alignment: 'center')
+            ->column('id', label: '#', sortable: true, canBeHidden: false, alignment: 'right')
+            ->column('nombre_completo', label: 'Nombre Completo', sortable: true, searchable: true)
+            ->column('email', label: 'Correo Electrónico', sortable: true, searchable: true)
+            ->column('student.nombre_completo', label: 'Estudiante familiar', sortable: true, searchable: true)
+            ->column('accion', label: 'Acciones', canBeHidden: false)
             ->rowLink(function (Tutor $tutor){
                 return route('tutors.show', $tutor);
             })

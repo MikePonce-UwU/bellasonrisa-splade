@@ -49,10 +49,14 @@ class Users extends AbstractTable
     {
         $table
             ->withGlobalSearch(columns: ['name', 'email'])
-            ->column('id', label: '#', sortable: true, canBeHidden: false)
+            ->column('id', label: '#', sortable: true, canBeHidden: false, alignment: 'right')
             ->column('name', label: 'Nombre Usuario', sortable: true)
             ->column('email', label: 'Correo Electrónico', sortable: true)
             ->column('roles.name', label: 'Roles', sortable: true)
+            ->column('accion', label: 'Acciones')
+            ->rowLink(function (User $user) {
+                return route('users.show', $user);
+            })
 
             // ->searchInput()
             // ->selectFilter()
@@ -60,6 +64,6 @@ class Users extends AbstractTable
 
             // ->bulkAction()
             // ->export()
-            ;
+        ;
     }
 }

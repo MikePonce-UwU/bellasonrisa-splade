@@ -40,13 +40,11 @@
                                     </span>
                                 </x-slot>
                                 <div class="w-60 mt-2 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 py-1 bg-white">
-                                    <div class="border-t border-gray-200" />
 
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         {{ str('Administrar alumnado')->upper() }}
                                     </div>
 
-                                    <div class="border-t border-gray-200" />
 
                                     <x-dropdown-link :href="route('grades.index')">
                                         {{ __('Grados') }}
@@ -61,13 +59,11 @@
                                         {{ __('Padres de familia') }}
                                     </x-dropdown-link>
 
-                                    <div class="border-t border-gray-200" />
-                                    
+
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         {{ str('Administrar usuarios')->upper() }}
                                     </div>
-                                    
-                                    <div class="border-t border-gray-200" />
+
 
                                     <x-dropdown-link :href="route('users.index')">
                                         {{ __('Usuarios') }}

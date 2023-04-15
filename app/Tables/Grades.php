@@ -49,10 +49,10 @@ class Grades extends AbstractTable
     {
         $table
             ->withGlobalSearch(columns: ['nombre_largo'])
-            ->column('id', label: '#', sortable: true, canBeHidden: false, alignment: 'center')
-            ->column('nombre_largo', label: 'Nombre grado', sortable: true, alignment: 'center')
-            ->column('students', label: 'Estudiantes', sortable: true, alignment: 'center')
-            ->column('subjects', label: 'Asignaturas', sortable: true, alignment: 'center')
+            ->column('id', label: '#', sortable: true, canBeHidden: false, alignment: 'right')
+            ->column('nombre_largo', label: 'Nombre grado', sortable: true)
+            ->column('students', label: 'Estudiantes', sortable: true)
+            ->column('subjects', label: 'Asignaturas', sortable: true)
             ->rowLink(function(Grade $grade) {
                 return route('grades.show', $grade);
             })

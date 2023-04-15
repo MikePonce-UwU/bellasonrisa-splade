@@ -49,11 +49,11 @@ class Students extends AbstractTable
     {
         $table
             ->withGlobalSearch(columns: ['nombre_completo', 'cedula', 'telefono'])
-            ->column(key: 'id', label: '#', sortable: true, canBeHidden: false, alignment: 'center')
-            ->column(key: 'nombre_completo', label:'Nombre Estudiante', sortable: true, alignment: 'center', searchable: true)
-            ->column(key: 'cedula', label: 'Cédula', sortable: true, alignment: 'center', searchable: true)
-            ->column(key: 'tutor.nombre_completo', label: 'Padre de familia', sortable: true, alignment: 'center', searchable: true)
-            ->column(key: 'grade.nombre_largo', label: 'Grado', sortable: true, alignment: 'center', searchable: true)
+            ->column(key: 'id', label: '#', sortable: true, canBeHidden: false, alignment: 'right')
+            ->column(key: 'nombre_completo', label:'Nombre Estudiante', sortable: true, searchable: true)
+            ->column(key: 'cedula', label: 'Cédula', sortable: true, searchable: true)
+            ->column(key: 'tutor.nombre_completo', label: 'Padre de familia', sortable: true, searchable: true)
+            ->column(key: 'grade.nombre_largo', label: 'Grado', sortable: true, searchable: true)
             ->column(key: 'accion', label: 'Acciones')
             ->rowLink(function(Student $student) {
                 return route('students.show', $student);

@@ -16,7 +16,7 @@ class GradeController extends Controller
      */
     public function index()
     {
-        return view('pages.grades.index', ['grades' => Grades::class, 'subjects' => Subject::pluck('nombre_corto', 'id')]);
+        return view('admin.grades.index', ['grades' => Grades::class, 'subjects' => Subject::pluck('nombre_corto', 'id')]);
     }
 
     /**
@@ -42,7 +42,7 @@ class GradeController extends Controller
         // foreach ($grade->asignaturas as $a) {
         //     $asignaturas[$a->id] = ['grade' => $grade->id];
         // }
-        return view('pages.grades.show', ['grade' => $grade, 'subjects' => Subject::pluck('nombre_corto', 'id')]);
+        return view('admin.grades.show', ['grade' => $grade, 'subjects' => Subject::pluck('nombre_corto', 'id')]);
     }
 
     /**

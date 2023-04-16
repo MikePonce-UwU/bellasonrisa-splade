@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        return view('pages.users.index', ['users' => $this->users, 'roles' => $this->roles]);
+        return view('admin.users.index', ['users' => $this->users, 'roles' => $this->roles]);
     }
 
     /**
@@ -52,7 +52,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
-        return view('pages.users.show', ['user' => $user, 'roles' => $this->roles]);
+        return view('admin.users.show', ['user' => $user, 'roles' => $this->roles]);
     }
 
     /**

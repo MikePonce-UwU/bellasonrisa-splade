@@ -23,7 +23,7 @@
 
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <div class="ml-3 relative">
-                        @role('admin')
+                        @role(['admin', 'Administrador'])
                             <x-splade-dropdown>
                                 <x-slot name="trigger">
                                     <span class="inline-flex rounded-md">
@@ -67,6 +67,12 @@
 
                                     <x-dropdown-link :href="route('users.index')">
                                         {{ __('Usuarios') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('roles.index')">
+                                        {{ __('Roles') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('permissions.index')">
+                                        {{ __('Permisos') }}
                                     </x-dropdown-link>
                                 </div>
                             </x-splade-dropdown>

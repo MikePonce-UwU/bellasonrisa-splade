@@ -44,13 +44,15 @@ Route::middleware(['splade'])->group(function () {
         Route::view('/dashboard', 'dashboard')->name('dashboard');
         Route::group([
             'prefix' => 'admin/',
-            'middleware' => 'role:admin',
+            'middleware' => 'role:admin|Administrador',
         ], function() {
             Route::resource('grades', \App\Http\Controllers\GradeController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('students', \App\Http\Controllers\StudentController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('subjects', \App\Http\Controllers\SubjectController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('tutors', \App\Http\Controllers\TutorController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('users', \App\Http\Controllers\UserController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::resource('roles', \App\Http\Controllers\RoleController::class)->only(['index', 'store', 'show', 'update']);
+            Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->only(['index', 'store',]);
         });
     });
 });

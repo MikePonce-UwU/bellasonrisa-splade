@@ -14,7 +14,7 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        return view('pages.subjects.index', ['subjects' => Subjects::class, 'grades' => Grade::pluck('nombre_largo', 'id')]);
+        return view('admin.subjects.index', ['subjects' => Subjects::class, 'grades' => Grade::pluck('nombre_largo', 'id')]);
     }
 
     /**
@@ -45,7 +45,7 @@ class SubjectController extends Controller
     public function show(Subject $subject)
     {
         //
-        return view('pages.subjects.show', ['subject' => $subject, 'grades' => Grade::pluck('nombre_largo', 'id')]);
+        return view('admin.subjects.show', ['subject' => $subject, 'grades' => Grade::pluck('nombre_largo', 'id')]);
     }
 
     /**

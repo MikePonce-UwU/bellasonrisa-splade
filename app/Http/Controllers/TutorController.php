@@ -22,7 +22,8 @@ class TutorController extends Controller
     public function index()
     {
         //
-        return view('pages.tutors.index', ['tutors' => $this->tutors, 'students' => $this->students]);
+        return view('admin
+        .tutors.index', ['tutors' => $this->tutors, 'students' => $this->students]);
     }
 
     /**
@@ -53,7 +54,8 @@ class TutorController extends Controller
     public function show(Tutor $tutor)
     {
         //
-        return view('pages.tutors.show', ['tutor' => $tutor, 'students' => $this->students]);
+        return view('admin
+        .tutors.show', ['tutor' => $tutor, 'students' => $this->students]);
     }
 
     /**

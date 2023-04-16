@@ -20,7 +20,7 @@ class StudentController extends Controller
     }
     public function index()
     {
-        return view('pages.students.index', ['students' => $this->students, 'grades' => $this->grades, 'tutors' => $this->tutors]);
+        return view('admin.students.index', ['students' => $this->students, 'grades' => $this->grades, 'tutors' => $this->tutors]);
     }
     public function store(Request $request)
     {
@@ -48,7 +48,7 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         // dd($student->load('grade'));
-        return view('pages.students.show', ['student' => $student, 'grades' => $this->grades, 'tutors' => $this->tutors]);
+        return view('admin.students.show', ['student' => $student, 'grades' => $this->grades, 'tutors' => $this->tutors]);
     }
     public function update(Request $request, Student $student)
     {

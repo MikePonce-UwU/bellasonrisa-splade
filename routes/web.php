@@ -45,14 +45,23 @@ Route::middleware(['splade'])->group(function () {
         Route::group([
             'prefix' => 'admin/',
             'middleware' => 'role:admin|Administrador',
-        ], function() {
-            Route::resource('grades', \App\Http\Controllers\GradeController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
-            Route::resource('students', \App\Http\Controllers\StudentController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
-            Route::resource('subjects', \App\Http\Controllers\SubjectController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+        ], function () {
+            if (\App\MKPonce\MKPonce::supportsGradesManagement())
+                Route::resource('grades', \App\Http\Controllers\GradeController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+            if (\App\MKPonce\MKPonce::supportsStudentsManagement())
+                Route::resource('students', \App\Http\Controllers\StudentController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+            if (\App\MKPonce\MKPonce::supportsSubjectsManagement())
+                Route::resource('subjects', \App\Http\Controllers\SubjectController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('tutors', \App\Http\Controllers\TutorController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('users', \App\Http\Controllers\UserController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
-            Route::resource('roles', \App\Http\Controllers\RoleController::class)->only(['index', 'store', 'show', 'update']);
-            Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->only(['index', 'store',]);
+            if (\App\MKPonce\MKPonce::supportsRolesManagement())
+                Route::resource('roles', \App\Http\Controllers\RoleController::class)->only(['index', 'store', 'show', 'update']);
+            if (\App\MKPonce\MKPonce::supportsPermissionsManagement())
+                Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->only(['index', 'store',]);
+        });
+        Route::group(['middleware' => 'role:Administrador|Sub-director|Director|Auxiliar contable'], function () {
+            if (\App\MKPonce\MKPonce::supportsInvoicesManagement())
+                Route::resource('invoices', \App\Http\Controllers\InvoiceController::class)->only(['index', 'store', 'show', 'update']);
         });
     });
 });

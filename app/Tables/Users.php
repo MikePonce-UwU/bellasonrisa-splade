@@ -51,8 +51,13 @@ class Users extends AbstractTable
             ->withGlobalSearch(columns: ['name', 'email'])
             ->column('id', label: '#', sortable: true, canBeHidden: false, alignment: 'right')
             ->column('name', label: 'Nombre Usuario', sortable: true)
-            ->column('email', label: 'Correo Electrónico', sortable: true)
-            ->column('roles.name', label: 'Roles', sortable: true)
+            ->column('email', label: 'Correo Electrónico', sortable: true);
+        // ->column('roles.name', label: 'Roles', sortable: true)
+        if (\App\MKPonce\MKPonce::supportsRolesManagement()) {
+            $table
+                ->column('roles.name', label: 'Roles', sortable: true);
+        }
+        $table
             ->column('accion', label: 'Acciones')
             ->rowLink(function (User $user) {
                 return route('users.show', $user);

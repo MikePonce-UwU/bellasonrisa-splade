@@ -51,10 +51,6 @@ class Roles extends AbstractTable
             ->withGlobalSearch(columns: ['name'])
             ->column('id', label: '#', sortable: true, canBeHidden: false, alignment: 'right')
             ->column('name', label: 'Nombre del rol', sortable: true)
-            ->column('permissions.name', label: 'Permisos', sortable: true)
-            ->rowLink(function(Role $role){
-                return route('roles.show', $role);
-            })
 
             // ->searchInput()
             // ->selectFilter()
@@ -62,6 +58,13 @@ class Roles extends AbstractTable
 
             // ->bulkAction()
             // ->export()
-            ;
+        ;
+        if (\App\MKPonce\MKPonce::supportsPermissionsManagement()) {
+            $table
+                ->column('permissions.name', label: 'Permisos', sortable: true)
+                ->rowLink(function (Role $role) {
+                    return route('roles.show', $role);
+                });
+        }
     }
 }

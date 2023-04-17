@@ -67,9 +67,9 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        //
+        // dd($request->all());
         // $role->name = $request->input('name');
-        // $role->save();
+        $role->touch();
         $role->permissions()->sync($request->input('permissions'));
         return redirect()->route('roles.index')->with('flash.banner', '[' . $role->updated_at . '] El rol fue modificado: ' . $role->name)->with('flash.bannerStyle', 'success');
     }

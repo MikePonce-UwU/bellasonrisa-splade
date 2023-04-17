@@ -18,6 +18,11 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
+                        @role(['Administrador', 'admin', 'Sub-director', 'Director', 'Auxiliar contable'])
+                            <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+                                {{ __('Invoices') }}
+                            </x-nav-link>
+                        @endrole
                     </div>
                 </div>
 
@@ -45,19 +50,21 @@
                                         {{ str('Administrar alumnado')->upper() }}
                                     </div>
 
-
-                                    <x-dropdown-link :href="route('grades.index')">
-                                        {{ __('Grados') }}
-                                    </x-dropdown-link>
-                                    <x-dropdown-link :href="route('subjects.index')">
-                                        {{ __('Materias') }}
-                                    </x-dropdown-link>
-                                    <x-dropdown-link :href="route('students.index')">
-                                        {{ __('Estudiantes') }}
-                                    </x-dropdown-link>
-                                    <x-dropdown-link :href="route('tutors.index')">
-                                        {{ __('Padres de familia') }}
-                                    </x-dropdown-link>
+                                    @if(\App\MKPonce\MKPonce::supportsGradesManagement())
+                                        <x-dropdown-link :href="route('grades.index')">
+                                            {{ __('Grados') }}
+                                        </x-dropdown-link>
+                                    @endif
+                                    @if(\App\MKPonce\MKPonce::supportsSubjectsManagement())
+                                        <x-dropdown-link :href="route('subjects.index')">
+                                            {{ __('Materias') }}
+                                        </x-dropdown-link>
+                                    @endif
+                                    @if(\App\MKPonce\MKPonce::supportsStudentsManagement())
+                                        <x-dropdown-link :href="route('students.index')">
+                                            {{ __('Estudiantes') }}
+                                        </x-dropdown-link>
+                                    @endif
 
 
                                     <div class="block px-4 py-2 text-xs text-gray-400">
@@ -68,12 +75,16 @@
                                     <x-dropdown-link :href="route('users.index')">
                                         {{ __('Usuarios') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link :href="route('roles.index')">
-                                        {{ __('Roles') }}
-                                    </x-dropdown-link>
-                                    <x-dropdown-link :href="route('permissions.index')">
-                                        {{ __('Permisos') }}
-                                    </x-dropdown-link>
+                                    @if(\App\MKPonce\MKPonce::supportsRolesManagement())
+                                        <x-dropdown-link :href="route('roles.index')">
+                                            {{ __('Roles') }}
+                                        </x-dropdown-link>
+                                    @endif
+                                    @if(\App\MKPonce\MKPonce::supportsPermissionsManagement())
+                                        <x-dropdown-link :href="route('permissions.index')">
+                                            {{ __('Permisos') }}
+                                        </x-dropdown-link>
+                                    @endif
                                 </div>
                             </x-splade-dropdown>
                         @endrole

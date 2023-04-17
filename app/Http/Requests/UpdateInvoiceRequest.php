@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRoleRequest extends FormRequest
+class UpdateInvoiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,11 @@ class UpdateRoleRequest extends FormRequest
     {
         return [
             //
-            'name' => ['unique:roles,name,' . $this->request->get('name'). ',' . $this->request->get('id')],
+            'numero_factura' => ['required', 'unique:invoices,numero_factura,' . $this->request->get('numero_factura') . ',numero_factura', 'min:5',],
+            'razon' => ['required', 'min:5', 'string'],
+            'descripcion_factura' => ['required', 'min:5', 'string'],
+            'total_factura' => ['required', 'numeric'],
+            'income' => ['required', 'boolean']
         ];
     }
 }

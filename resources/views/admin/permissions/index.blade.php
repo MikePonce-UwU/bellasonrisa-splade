@@ -6,7 +6,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-1">
                 {{ __('Permisos') }}
             </h2>
-            <Link href="#nuevoRoleModal" class="text-indigo-500 text-md px-6">Nuevo registro</Link>
+            <Link href="#nuevoPermissionModal" class="text-indigo-500 text-md px-6">Nuevo registro</Link>
         </div>
     </x-slot>
 

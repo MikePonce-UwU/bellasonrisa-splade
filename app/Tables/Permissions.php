@@ -51,9 +51,9 @@ class Permissions extends AbstractTable
             ->withGlobalSearch(columns: ['name'])
             ->column('id', label: '#', sortable: true, canBeHidden: false, alignment: 'right')
             ->column('name', label: 'Nombre del permiso', sortable: true)
-            ->rowLink(function(Permission $permission){
-                return route('permissions.show', $permission);
-            })
+            // ->rowLink(function(Permission $permission){
+            //     return route('permissions.show', $permission);
+            // })
 
             // ->searchInput()
             // ->selectFilter()

@@ -12,8 +12,6 @@
             <div class="bg-white shadow-xl sm:rounded-lg">
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                     <x-splade-form :default="$role" method="put" :action="route('roles.update', $role)">
-                        {{-- <x-splade-input name="id"class="mb-2 hidden" /> --}}
-                        {{-- <x-splade-input name="name" label="Nombre de role" class="mb-2" /> --}}
                         <x-splade-select label="Seleccione el permiso:" name="permissions" :options="$permissions" multiple
                             choices relation placeholder="Seleccione un permiso..." class="mb-2" />
                         <x-splade-button secondary class="mt-4" @click.prevent="form.restore">

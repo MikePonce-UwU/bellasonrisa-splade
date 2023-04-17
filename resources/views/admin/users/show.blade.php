@@ -22,8 +22,10 @@
                 <x-splade-radio name="sexo" value="m" label="Masculino" />
                 <x-splade-radio name="sexo" value="f" label="Femenino" />
             </x-splade-group> --}}
-                        <x-splade-select label="Seleccione el rol:" name="roles" :options="$roles" multiple choices relation
-                            placeholder="Seleccione un rol..." class="mb-2" />
+                        @if (\App\MKPonce\MKPonce::supportsRolesManagement())
+                            <x-splade-select label="Seleccione el rol:" name="roles" :options="$roles" multiple
+                                choices relation placeholder="Seleccione un rol..." class="mb-2" />
+                        @endif
                         <x-splade-button secondary class="mt-4" @click.prevent="form.restore">
                             Reiniciar
                         </x-splade-button>

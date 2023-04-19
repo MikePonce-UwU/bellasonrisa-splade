@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('telefono')->nullable();
             $table->char('sexo')->default('m');
             $table->foreignId('grade_id')->constrained();
+            $table->foreignId('tutor_id')->nullable()->constrained('users', 'id');
             $table->timestamps();
             $table->softDeletes();
         });

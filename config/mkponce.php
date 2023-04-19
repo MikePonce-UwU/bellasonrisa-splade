@@ -16,15 +16,12 @@ return [
      * -> Gestión de...
      */
     'features' => [
-        Features::employeesManagement(),
         Features::invoicesManagement(),
         Features::matriculatesManagement(),
         Features::notesManagement(),
         Features::paymentsManagement(),
         Features::rolesManagement(),
         // Features::permissionsManagement(),
-        Features::studentsManagement(),
-        Features::gradesManagement(),
-        Features::subjectsManagement(),
+        Features::productsManagement(),
     ],
 ];

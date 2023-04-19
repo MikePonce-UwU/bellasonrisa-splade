@@ -9,18 +9,18 @@ class Features
     {
         return in_array($feature, config('mkponce.features', []));
     }
-    public static function supportsStudentsManagement()
-    {
-        return static::enabled(static::studentsManagement());
-    }
+    // public static function supportsStudentsManagement()
+    // {
+    //     return static::enabled(static::studentsManagement());
+    // }
     public static function supportsNotesManagement()
     {
         return static::enabled(static::notesManagement());
     }
-    public static function supportsEmployeesManagement()
-    {
-        return static::enabled(static::employeesManagement());
-    }
+    // public static function supportsEmployeesManagement()
+    // {
+    //     return static::enabled(static::employeesManagement());
+    // }
     public static function supportsRolesManagement()
     {
         return static::enabled(static::rolesManagement());
@@ -41,24 +41,28 @@ class Features
     {
         return static::enabled(static::invoicesManagement());
     }
-    public static function supportsGradesManagement()
+    // public static function supportsGradesManagement()
+    // {
+    //     return static::enabled(static::gradesManagement());
+    // }
+    // public static function supportsSubjectsManagement()
+    // {
+    //     return static::enabled(static::subjectsManagement());
+    // }
+    public static function supportsProductsManagement()
     {
-        return static::enabled(static::gradesManagement());
-    }
-    public static function supportsSubjectsManagement()
-    {
-        return static::enabled(static::subjectsManagement());
+        return static::enabled(static::productsManagement());
     }
 
-    public static function studentsManagement(){
-        return 'students-management';
-    }
+    // public static function studentsManagement(){
+    //     return 'students-management';
+    // }
     public static function notesManagement(){
         return 'notes-management';
     }
-    public static function employeesManagement(){
-        return 'employees-management';
-    }
+    // public static function employeesManagement(){
+    //     return 'employees-management';
+    // }
     public static function rolesManagement(){
         return 'roles-management';
     }
@@ -74,10 +78,13 @@ class Features
     public static function invoicesManagement(){
         return 'invoices-management';
     }
-    public static function gradesManagement(){
-        return 'grades-management';
-    }
-    public static function subjectsManagement(){
-        return 'subjects-management';
+    // public static function gradesManagement(){
+    //     return 'grades-management';
+    // }
+    // public static function subjectsManagement(){
+    //     return 'subjects-management';
+    // }
+    public static function productsManagement(){
+        return 'products-management';
     }
 }

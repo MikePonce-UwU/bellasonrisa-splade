@@ -15,16 +15,24 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('cedula')->unique()->nullable();
+            $table->date('fecha_nacimiento')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
+            $table->char('sexo')->default('m');
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
         // $seeder = new DatabaseSeeder;
         // $seeder->run();
+        \App\Models\User::create([
+            'name' =>'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('123'),
+        ]);
     }
 
     /**

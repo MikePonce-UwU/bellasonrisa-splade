@@ -19,9 +19,11 @@
                             {{ __('Dashboard') }}
                         </x-nav-link>
                         @role(['Administrador', 'admin', 'Sub-director', 'Director', 'Auxiliar contable'])
-                            <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
-                                {{ __('Invoices') }}
-                            </x-nav-link>
+                            @if (\App\MKPonce\MKPonce::supportsInvoicesManagement())
+                                <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+                                    {{ __('Invoices') }}
+                                </x-nav-link>
+                            @endif
                         @endrole
                     </div>
                 </div>
@@ -50,21 +52,15 @@
                                         {{ str('Administrar alumnado')->upper() }}
                                     </div>
 
-                                    @if(\App\MKPonce\MKPonce::supportsGradesManagement())
-                                        <x-dropdown-link :href="route('grades.index')">
-                                            {{ __('Grados') }}
-                                        </x-dropdown-link>
-                                    @endif
-                                    @if(\App\MKPonce\MKPonce::supportsSubjectsManagement())
-                                        <x-dropdown-link :href="route('subjects.index')">
-                                            {{ __('Materias') }}
-                                        </x-dropdown-link>
-                                    @endif
-                                    @if(\App\MKPonce\MKPonce::supportsStudentsManagement())
-                                        <x-dropdown-link :href="route('students.index')">
-                                            {{ __('Estudiantes') }}
-                                        </x-dropdown-link>
-                                    @endif
+                                    <x-dropdown-link :href="route('grades.index')">
+                                        {{ __('Grados') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('subjects.index')">
+                                        {{ __('Materias') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('students.index')">
+                                        {{ __('Estudiantes') }}
+                                    </x-dropdown-link>
 
 
                                     <div class="block px-4 py-2 text-xs text-gray-400">
@@ -75,12 +71,12 @@
                                     <x-dropdown-link :href="route('users.index')">
                                         {{ __('Usuarios') }}
                                     </x-dropdown-link>
-                                    @if(\App\MKPonce\MKPonce::supportsRolesManagement())
+                                    @if (\App\MKPonce\MKPonce::supportsRolesManagement())
                                         <x-dropdown-link :href="route('roles.index')">
                                             {{ __('Roles') }}
                                         </x-dropdown-link>
                                     @endif
-                                    @if(\App\MKPonce\MKPonce::supportsPermissionsManagement())
+                                    @if (\App\MKPonce\MKPonce::supportsPermissionsManagement())
                                         <x-dropdown-link :href="route('permissions.index')">
                                             {{ __('Permisos') }}
                                         </x-dropdown-link>

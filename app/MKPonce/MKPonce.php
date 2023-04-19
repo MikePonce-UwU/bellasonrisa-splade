@@ -3,18 +3,18 @@
 namespace App\MKPonce;
 
 class MKPonce{
-    public static function supportsStudentsManagement()
-    {
-        return Features::supportsStudentsManagement();
-    }
+    // public static function supportsStudentsManagement()
+    // {
+    //     return Features::supportsStudentsManagement();
+    // }
     public static function supportsNotesManagement()
     {
         return Features::supportsNotesManagement();
     }
-    public static function supportsEmployeesManagement()
-    {
-        return Features::supportsEmployeesManagement();
-    }
+    // public static function supportsEmployeesManagement()
+    // {
+    //     return Features::supportsEmployeesManagement();
+    // }
     public static function supportsPermissionsManagement()
     {
         return Features::supportsPermissionsManagement();
@@ -35,12 +35,16 @@ class MKPonce{
     {
         return Features::supportsInvoicesManagement();
     }
-    public static function supportsGradesManagement()
+    // public static function supportsGradesManagement()
+    // {
+    //     return Features::supportsGradesManagement();
+    // }
+    // public static function supportsSubjectsManagement()
+    // {
+    //     return Features::supportsSubjectsManagement();
+    // }
+    public static function supportsProductsManagement()
     {
-        return Features::supportsGradesManagement();
-    }
-    public static function supportsSubjectsManagement()
-    {
-        return Features::supportsSubjectsManagement();
+        return Features::supportsProductsManagement();
     }
 }

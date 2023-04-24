@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Grade;
 use App\Models\Student;
-use App\Models\Tutor;
+use App\Models\User;
 use App\Tables\Students;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,9 @@ class StudentController extends Controller
     public function __construct()
     {
         $this->grades = Grade::pluck('nombre_largo', 'id');
-        $this->tutors = Tutor::pluck('nombre_completo', 'id');
+        $this->tutors = User::whereDoesntHave('roles', function($q){
+            return $q->where(['role_id' => [1, 2, 3, 4, 6]]);
+        })->pluck('name', 'id');
         $this->students = Students::class;
     }
     public function index()
@@ -27,8 +29,6 @@ class StudentController extends Controller
         $request->validate([
             'nombre_completo' => 'required|string|min:5',
             'fecha_nacimiento' => 'required|date',
-            'cedula' => 'required|string',
-            'telefono' => 'required|string',
             'sexo' => 'required|in:m,f',
             'grade_id' => 'required',
             'tutor_id' => 'required'
@@ -36,8 +36,8 @@ class StudentController extends Controller
         $student = Student::create([
             'nombre_completo' => str()->lower($request->input('nombre_completo')),
             'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-            'cedula' => str()->upper($request->input('cedula')),
-            'telefono' => $request->input('telefono'),
+            'cedula' => str()->upper($request->input('cedula')) ?? null,
+            'telefono' => $request->input('telefono') ?? null,
             'sexo' => $request->input('sexo'),
             'grade_id' => $request->input('grade_id'),
             'tutor_id' => $request->input('tutor_id'),
@@ -56,8 +56,6 @@ class StudentController extends Controller
         $request->validate([
             'nombre_completo' => 'required|string|min:5',
             'fecha_nacimiento' => 'required|date',
-            'cedula' => 'required|string',
-            'telefono' => 'required|string',
             'sexo' => 'required|in:m,f',
             'grade_id' => 'required',
             'tutor_id' => 'required'
@@ -65,8 +63,8 @@ class StudentController extends Controller
         $student->update([
             'nombre_completo' => str()->lower($request->input('nombre_completo')),
             'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-            'cedula' => str()->upper($request->input('cedula')),
-            'telefono' => $request->input('telefono'),
+            'cedula' => str()->upper($request->input('cedula')) ?? null,
+            'telefono' => $request->input('telefono') ?? null,
             'sexo' => $request->input('sexo'),
             'grade_id' => $request->input('grade_id'),
             'tutor_id' => $request->input('tutor_id'),

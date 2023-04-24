@@ -39,12 +39,14 @@
         <x-splade-form :action="route('users.store')" method="post">
             <x-splade-input name="name" label="Nombre de user" class="mb-2" />
             <x-splade-input name="email" type="email" label="Correo electrónico" class="mb-2" />
-            <x-splade-input name="password" type="password" label="Contraseña" class="mb-2" />
-            <x-splade-input name="password_confirmation" type="password" label="Confirmar contraseña" class="mb-2" />
-            {{-- <x-splade-group name="sexo" label="Sexo del user" :show-errors="true" class="mb-2">
+            <x-splade-input name="cedula" label="Cédula de identidad" placeholder="###-######-####A" class="mb-2" />
+            <x-splade-input name="fecha_nacimiento" date label="Correo electrónico" class="mb-2" />
+            <x-splade-group name="sexo" label="Sexo del user" :show-errors="true" class="mb-2">
                 <x-splade-radio name="sexo" value="m" label="Masculino" />
                 <x-splade-radio name="sexo" value="f" label="Femenino" />
-            </x-splade-group> --}}
+            </x-splade-group>
+            <x-splade-input name="password" type="password" label="Contraseña" class="mb-2" />
+            <x-splade-input name="password_confirmation" type="password" label="Confirmar contraseña" class="mb-2" />
             @if (\App\MKPonce\MKPonce::supportsRolesManagement())
                 <x-splade-select label="Seleccione el rol:" name="roles" :options="$roles" multiple choices relation
                     placeholder="Seleccione un rol..." class="mb-2" />

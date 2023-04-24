@@ -9,7 +9,7 @@
             <Link href="#nuevoEstudianteModal" class="text-indigo-500 text-md px-6">Nueva Estudiante</Link>
         </div>
     </x-slot>
-
+{{-- @dd($tutors) --}}
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-xl sm:rounded-lg">

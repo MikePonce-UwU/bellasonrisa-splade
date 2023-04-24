@@ -41,8 +41,12 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'cedula' => $request->input('cedula'),
+            'fecha_nacimiento' => $request->input('fecha_nacimiento'),
+            'sexo' => $request->input('sexo'),
             'password' => bcrypt($request->input('password')),
         ]);
+        $user->roles()->sync($request->input('roles'));
         return redirect()->route('users.index')->with('flash.banner', '[' . $user->created_at . '] El usuario fue creado: ' . $user->name)->with('flash.bannerStyle', 'success');
     }
 
@@ -71,6 +75,9 @@ class UserController extends Controller
         //
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->cedula = $request->input('cedula');
+        $user->fecha_nacimiento = $request->input('fecha_nacimiento');
+        $user->sexo = $request->input('sexo');
         $request->input('password') !== null ? $user->password = bcrypt($request->input('password')) : null;
         $user->save();
         $user->roles()->sync($request->input('roles'));

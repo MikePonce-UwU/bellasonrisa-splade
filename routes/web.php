@@ -30,11 +30,14 @@ Route::middleware(['splade'])->group(function () {
     Route::get('/', function () {
         return view('welcome', [
             'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
+            // 'canRegister' => Route::has('register'),
+            'canRegister' => false,
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
         ]);
     });
+    Route::get('/matricula-en-linea', [\App\Http\Controllers\MatriculaController::class, 'index'])->name('matricula.index');
+    Route::post('/matricula-en-linea', [\App\Http\Controllers\MatriculaController::class, 'store'])->name('matricula.store');
 
     Route::middleware([
         'auth:sanctum',

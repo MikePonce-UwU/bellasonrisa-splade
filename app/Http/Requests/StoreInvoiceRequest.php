@@ -27,7 +27,9 @@ class StoreInvoiceRequest extends FormRequest
             'razon' => ['required', 'min:5', 'string'],
             'descripcion_factura' => ['required', 'min:5', 'string'],
             'total_factura' => ['required', 'numeric'],
-            'income' => ['required', 'boolean']
+            'income' => ['required', 'boolean'],
+            'tarjeta' => ['boolean'],
+            'dolares' => ['boolean'],
         ];
     }
 }

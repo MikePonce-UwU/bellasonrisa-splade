@@ -24,6 +24,9 @@ class UpdateUserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:5'],
             'email' => ['required', 'email', 'unique:users,email,' . $this->request->get('id')],
+            'cedula' => ['required', 'string', 'unique:users,cedula,' . $this->request->get('id')],
+            'fecha_nacimiento' => ['required', 'date',],
+            'sexo' => ['required', 'in:m,f',],
             'password' => ['sometimes', 'confirmed'],
             'password_confirmation' => [],
         ];

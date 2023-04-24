@@ -13,7 +13,7 @@ class Student extends Model
 {
     use HasFactory, SoftDeletes, PowerJoins;
     protected $fillable = [
-        'nombre_completo', 'fecha_nacimiento', 'cedula', 'telefono', 'sexo', 'grade_id', 'tutor_id'
+        'nombre_completo', 'fecha_nacimiento', 'cedula', 'telefono', 'sexo', 'grade_id', 'tutor_id', 'lugar_nacimiento', 'direccion', 'expediente_medico',
     ];
     protected $casts= [
         'fecha_nacimiento' => 'date'
@@ -22,7 +22,7 @@ class Student extends Model
         return $this->belongsTo(Grade::class);
     }
     public function tutor(): BelongsTo{
-        return $this->belongsTo(Tutor::class);
+        return $this->belongsTo(User::class);
     }
     public function subjects():BelongsToMany{
         return $this->belongsToMany(Subject::class)->as('notas')->withPivot([

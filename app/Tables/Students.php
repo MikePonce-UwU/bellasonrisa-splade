@@ -52,7 +52,7 @@ class Students extends AbstractTable
             ->column(key: 'id', label: '#', sortable: true, canBeHidden: false, alignment: 'right')
             ->column(key: 'nombre_completo', label:'Nombre Estudiante', sortable: true, searchable: true)
             ->column(key: 'cedula', label: 'Cédula', sortable: true, searchable: true)
-            ->column(key: 'tutor.nombre_completo', label: 'Padre de familia', sortable: true, searchable: true)
+            ->column(key: 'tutor.name', label: 'Padre de familia', sortable: true, searchable: true)
             ->column(key: 'grade.nombre_largo', label: 'Grado', sortable: true, searchable: true)
             ->column(key: 'accion', label: 'Acciones')
             ->rowLink(function(Student $student) {

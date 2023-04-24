@@ -24,6 +24,9 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:5'],
             'email' => ['required', 'email', 'unique:users,email'],
+            'cedula' => ['required', 'string', 'unique:users,cedula'],
+            'fecha_nacimiento' => ['required', 'date',],
+            'sexo' => ['required', 'in:m,f',],
             'password' => ['required', 'min:3', 'confirmed'],
             'password_confirmation' => ['required', 'min:3'],
         ];

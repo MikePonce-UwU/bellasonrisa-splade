@@ -25,7 +25,6 @@ class CreatePermissionTables extends Migration
             throw new \Exception('Error: team_foreign_key on config/permission.php not loaded. Run [php artisan config:clear] and try again.');
         }
 
-        if (\App\MKPonce\MKPonce::supportsPermissionsManagement())
             Schema::create($tableNames['permissions'], function (Blueprint $table) {
                 $table->bigIncrements('id'); // permission id
                 $table->string('name');       // For MySQL 8.0 use string('name', 125);
@@ -35,7 +34,6 @@ class CreatePermissionTables extends Migration
                 $table->unique(['name', 'guard_name']);
             });
 
-        if (\App\MKPonce\MKPonce::supportsRolesManagement())
             Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {
                 $table->bigIncrements('id'); // role id
                 if ($teams || config('permission.testing')) { // permission.testing is a fix for sqlite testing
@@ -52,7 +50,6 @@ class CreatePermissionTables extends Migration
                 }
             });
 
-        if (\App\MKPonce\MKPonce::supportsPermissionsManagement())
             Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames, $teams) {
                 $table->unsignedBigInteger(PermissionRegistrar::$pivotPermission);
 
@@ -79,7 +76,6 @@ class CreatePermissionTables extends Migration
                     );
                 }
             });
-        if (\App\MKPonce\MKPonce::supportsRolesManagement())
             Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames, $teams) {
                 $table->unsignedBigInteger(PermissionRegistrar::$pivotRole);
 
@@ -107,7 +103,6 @@ class CreatePermissionTables extends Migration
                 }
             });
 
-        if (\App\MKPonce\MKPonce::supportsPermissionsManagement() && \App\MKPonce\MKPonce::supportsRolesManagement())
             Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
                 $table->unsignedBigInteger(PermissionRegistrar::$pivotPermission);
                 $table->unsignedBigInteger(PermissionRegistrar::$pivotRole);
@@ -140,6 +135,10 @@ class CreatePermissionTables extends Migration
             ]);
             \Spatie\Permission\Models\Role::create([
                 'name' => 'Sub-director',
+                'guard_name' => 'web',
+            ]);
+            \Spatie\Permission\Models\Role::create([
+                'name' => 'Maestro',
                 'guard_name' => 'web',
             ]);
             \Spatie\Permission\Models\Role::create([

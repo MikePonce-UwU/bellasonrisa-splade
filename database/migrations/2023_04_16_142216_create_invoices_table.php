@@ -16,10 +16,7 @@ return new class extends Migration
             $table->string('razon');
             $table->text('descripcion_factura');
             $table->decimal('total_factura');
-            $table->decimal('iva')->nullable();
             $table->boolean('income')->default(false);
-            $table->boolean('tarjeta')->default(false);
-            $table->boolean('dolares')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

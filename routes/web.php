@@ -63,5 +63,17 @@ Route::middleware(['splade'])->group(function () {
             if (\App\MKPonce\MKPonce::supportsInvoicesManagement())
                 Route::resource('invoices', \App\Http\Controllers\InvoiceController::class)->only(['index', 'store', 'show', 'update']);
         });
+        Route::group(['middleware' => 'role:Padre de familia'], function () {
+            Route::get('my-invoices', function () {
+                $invoices = auth()->user()->invoices()->where(['tipo_factura' => 'matricula'])->orWhere(['tipo_factura' => 'arancel'])->orderBy('created_at', 'asc')->get();
+                return view('pages.my-invoices', ['invoices' => \ProtoneMedia\Splade\SpladeTable::for($invoices)
+                    ->column('numero_factura', label: '#')
+                    ->column('razon', label: 'A razón de')
+                    ->column('total_factura', label: 'Total facturado')
+                    ->column('created_at', label: 'Facturado')
+                    ->column('tipo_factura', label: 'Tipo de factura')
+                ]);
+            })->name('my-invoices.show');
+        });
     });
 });

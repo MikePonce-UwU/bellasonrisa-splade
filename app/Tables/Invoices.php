@@ -3,6 +3,7 @@
 namespace App\Tables;
 
 use App\Models\Invoice;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\SpladeTable;
@@ -50,9 +51,11 @@ class Invoices extends AbstractTable
         $table
             ->withGlobalSearch(columns: ['numero_factura', 'razon', 'total_factura'])
             ->column('numero_factura', label: '#', sortable: true, canBeHidden: false, alignment:'right')
+            ->column('user.name', label: 'A nombre de', sortable: true)
+            ->column('tipo_factura', label: 'Tipo de Factura', sortable: true)
             ->column('razon', label: 'Razón', sortable: true)
             ->column('total_factura', label: 'Total facturado', sortable: true)
-            ->column('iva', label: 'I.V.A facturado', sortable: true)
+            ->column('created_at', label: 'Facturado', sortable: true)
             ->rowLink(function(Invoice $invoice) {
                 return route('invoices.show', $invoice);
             })
@@ -67,5 +70,6 @@ class Invoices extends AbstractTable
             // ->bulkAction()
             // ->export()
             ;
+            Carbon::class;
     }
 }

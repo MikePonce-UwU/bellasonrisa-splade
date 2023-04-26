@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -68,4 +69,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
+    public function latestInvoice(){
+        return $this->invoices()->one()->ofMany('numero_factura');
+    }
 }

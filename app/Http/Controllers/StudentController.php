@@ -15,7 +15,7 @@ class StudentController extends Controller
     public function __construct()
     {
         $this->grades = Grade::pluck('nombre_largo', 'id');
-        $this->tutors = User::whereDoesntHave('roles', function($q){
+        $this->tutors = User::whereDoesntHave('roles', function ($q) {
             return $q->where(['role_id' => [1, 2, 3, 4, 6]]);
         })->pluck('name', 'id');
         $this->students = Students::class;
@@ -31,7 +31,11 @@ class StudentController extends Controller
             'fecha_nacimiento' => 'required|date',
             'sexo' => 'required|in:m,f',
             'grade_id' => 'required',
-            'tutor_id' => 'required'
+            'tutor_id' => 'required',
+            'direccion' => 'required',
+            'lugar_nacimiento' => 'required',
+            'expediente_medico' => '',
+            'codigo_estudiante' => 'required|unique:students,codigo_estudiante',
         ]);
         $student = Student::create([
             'nombre_completo' => str()->lower($request->input('nombre_completo')),
@@ -58,7 +62,11 @@ class StudentController extends Controller
             'fecha_nacimiento' => 'required|date',
             'sexo' => 'required|in:m,f',
             'grade_id' => 'required',
-            'tutor_id' => 'required'
+            'tutor_id' => 'required',
+            'direccion' => 'required',
+            'lugar_nacimiento' => 'required',
+            'expediente_medico' => '',
+            'codigo_estudiante' => 'required|unique:students,codigo_estudiante,' . $student->id,
         ]);
         $student->update([
             'nombre_completo' => str()->lower($request->input('nombre_completo')),
@@ -68,6 +76,10 @@ class StudentController extends Controller
             'sexo' => $request->input('sexo'),
             'grade_id' => $request->input('grade_id'),
             'tutor_id' => $request->input('tutor_id'),
+            'direccion' => $request->input('direccion'),
+            'lugar_nacimiento' => $request->input('lugar_nacimiento'),
+            'expediente_medico' => $request->input('expediente_medico'),
+            'codigo_estudiante' => $request->input('codigo_estudiante'),
         ]);
         return redirect()->route('students.index')->with('flash.banner', '[' . $student->updated_at . '] El estudiante ha sido modificado: ' . str($student->nombre_completo)->title())->with('flash.bannerStyle', 'success');
     }

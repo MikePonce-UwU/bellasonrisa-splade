@@ -48,10 +48,10 @@ class Students extends AbstractTable
     public function configure(SpladeTable $table)
     {
         $table
-            ->withGlobalSearch(columns: ['nombre_completo', 'cedula', 'telefono'])
+            ->withGlobalSearch(columns: ['nombre_completo', 'codigo_estudiante', 'telefono'])
             ->column(key: 'id', label: '#', sortable: true, canBeHidden: false, alignment: 'right')
             ->column(key: 'nombre_completo', label:'Nombre Estudiante', sortable: true, searchable: true)
-            ->column(key: 'cedula', label: 'Cédula', sortable: true, searchable: true)
+            ->column(key: 'codigo_estudiante', label: 'Código Estudiantil', sortable: true, searchable: true)
             ->column(key: 'tutor.name', label: 'Padre de familia', sortable: true, searchable: true)
             ->column(key: 'grade.nombre_largo', label: 'Grado', sortable: true, searchable: true)
             ->column(key: 'accion', label: 'Acciones')

@@ -64,7 +64,10 @@ class Users extends AbstractTable
             })
 
             // ->searchInput()
-            // ->selectFilter()
+            ->selectFilter(key: 'sexo', label: 'Sexo', noFilterOptionLabel: 'Seleccione un sexo', options: [
+                'm' => 'Masculino',
+                'f' => 'Femenino',
+            ])
             // ->withGlobalSearch()
 
             // ->bulkAction()

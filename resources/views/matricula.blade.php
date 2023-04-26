@@ -8,7 +8,7 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-        <x-splade-form stay reset-on-success confirm :action="route('matricula.store')" method="post">
+        <x-splade-form stay restore-on-success confirm :action="route('matricula.store')" method="post">
             <x-form-section dusk="matricula_estudiante">
                 <x-slot name="title">
                     {{ __('Información del niño') }}
@@ -17,16 +17,18 @@
                     {{ __('Información básica del infante (Nombre completo, fecha de nacimiento, código único del niño)') }}
                 </x-slot>
                 <x-slot name="form">
-
                     <x-splade-input id="nombres" name="nombres" label="Nombres:" autocomplete="nombres"
-                        placeholder="Nombres del infante" class="col-span-6 sm:col-span-3" />
+                        placeholder="Nombres del infante" class="col-span-6 sm:col-span-2" />
                     <x-splade-input id="apellidos" name="apellidos" label="Apellidos:" autocomplete="apellidos"
-                        placeholder="Apellidos del infante" class="col-span-6 sm:col-span-3" />
+                        placeholder="Apellidos del infante" class="col-span-6 sm:col-span-2" />
+                    <x-splade-input id="codigo_estudiante" name="codigo_estudiante" label="Código del estudiante:"
+                        autocomplete="codigo_estudiante" placeholder="Código único del estudiante dado por el MINED"
+                        class="col-span-6 sm:col-span-2" />
                     <x-splade-input id="fecha_nacimiento" date name="fecha_nacimiento" placeholder="Fecha de nacimiento"
                         label="Fecha de nacimiento:" class="col-span-6 sm:col-span-3" />
-                    <x-splade-group name="sexo" class="col-span-6 sm:col-span-3" label="Sexo:" inline>
-                        <x-splade-radio name="sexo" value="m" label="Masculino" />
-                        <x-splade-radio name="sexo" value="f" label="Femenino" />
+                    <x-splade-group name="sexo_estudiante" class="col-span-6 sm:col-span-3" label="Sexo:" inline>
+                        <x-splade-radio name="sexo_estudiante" value="m" label="Masculino" />
+                        <x-splade-radio name="sexo_estudiante" value="f" label="Femenino" />
                     </x-splade-group>
                     <x-splade-textarea autosize placeholder="Lugar de nacimiento" id="lugar_nacimiento"
                         name="lugar_nacimiento" label="Lugar de nacimiento:" class="col-span-6 sm:col-span-6" />
@@ -55,9 +57,9 @@
                         placeholder="Cedula del padre" class="col-span-6 sm:col-span-3" />
                     <x-splade-input id="telefono" name="telefono" label="Teléfono:" autocomplete="telefono"
                         placeholder="Teléfono del padre" class="col-span-6 sm:col-span-3" />
-                    <x-splade-group name="sexo" class="col-span-6 sm:col-span-3" label="Sexo:" inline>
-                        <x-splade-radio name="sexo" value="m" label="Masculino" />
-                        <x-splade-radio name="sexo" value="f" label="Femenino" />
+                    <x-splade-group name="sexo_padre" class="col-span-6 sm:col-span-3" label="Sexo:" inline>
+                        <x-splade-radio name="sexo_padre" value="m" label="Masculino" />
+                        <x-splade-radio name="sexo_padre" value="f" label="Femenino" />
                     </x-splade-group>
                     <x-splade-input id="email" name="email" type="email" label="E-mail:" autocomplete="email"
                         placeholder="Correo electrónico del padre" class="col-span-6 sm:col-span-3" />

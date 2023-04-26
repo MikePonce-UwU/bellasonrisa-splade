@@ -13,7 +13,7 @@ class Student extends Model
 {
     use HasFactory, SoftDeletes, PowerJoins;
     protected $fillable = [
-        'nombre_completo', 'fecha_nacimiento', 'cedula', 'telefono', 'sexo', 'grade_id', 'tutor_id', 'lugar_nacimiento', 'direccion', 'expediente_medico',
+        'nombre_completo', 'fecha_nacimiento', 'cedula', 'telefono', 'sexo', 'grade_id', 'tutor_id', 'lugar_nacimiento', 'direccion', 'expediente_medico', 'codigo_estudiante'
     ];
     protected $casts= [
         'fecha_nacimiento' => 'date'

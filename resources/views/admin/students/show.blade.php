@@ -12,7 +12,9 @@
             <div class="bg-white shadow-xl sm:rounded-lg">
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                     <x-splade-form :default="$student" method="put" :action="route('students.update', $student)">
+                        <x-splade-input name="id" class="hidden" />
                         <x-splade-input name="nombre_completo" label="Nombre del Estudiante" class="mb-2" />
+                        <x-splade-input name="codigo_estudiante" label="Código de Estudiante" class="mb-2" />
                         <x-splade-input name="fecha_nacimiento" label="Fecha de Nacimiento" date class="mb-2" />
                         <x-splade-input name="cedula" label="Cédula del Estudiante" class="mb-2"
                             placeholder="###-######-####A" />
@@ -25,6 +27,9 @@
                             placeholder="Selecciona el padre..." class="my-2" />
                         <x-splade-select label="Seleccione el grado al que el Estudiante pertenece:" name="grade_id"
                             :options="$grades" placeholder="Selecciona los grados..." class="my-2" />
+                        <x-splade-textarea name="lugar_nacimiento" label="Lugar de nacimiento" class="mb-2" />
+                        <x-splade-textarea name="direccion" label="Dirección" class="mb-2" />
+                        <x-splade-textarea name="expediente_medico" label="Expediente Médico" class="mb-2" />
                         <x-splade-button secondary class="mt-4" @click.prevent="form.restore">
                             Reiniciar
                         </x-splade-button>

@@ -9,10 +9,11 @@ use App\Tables\Invoices;
 
 class InvoiceController extends Controller
 {
-    private $invoices;
+    private $invoices, $users;
     public function __construct()
     {
         $this->invoices = Invoices::class;
+        $this->users = \App\Models\User::pluck('name', 'id');
     }
     /**
      * Display a listing of the resource.
@@ -20,7 +21,7 @@ class InvoiceController extends Controller
     public function index()
     {
         //
-        return view('pages.invoices.index', ['invoices' => $this->invoices]);
+        return view('pages.invoices.index', ['invoices' => $this->invoices, 'users' => $this->users]);
     }
 
     /**
@@ -43,9 +44,8 @@ class InvoiceController extends Controller
             'descripcion_factura' => str($request->input('descripcion_factura'))->lower(),
             'total_factura' => $request->input('total_factura'),
             'income' => $request->input('income'),
+            'user_id' => $request->input('user_id'),
         ]);
-        $invoice->iva = $request->input('total_factura') > 0 ? $request->input('total_factura') - ($request->input('total_factura') / 1.15) : 0;
-        $invoice->save();
         return redirect()->route('invoices.index')->with('flash.banner', '[' . $invoice->created_at . '] La factura fue creada: ' . str($invoice->numero_factura)->upper())->with('flash.bannerStyle', 'success');
     }
 
@@ -55,7 +55,7 @@ class InvoiceController extends Controller
     public function show(Invoice $invoice)
     {
         //
-        return view('pages.invoices.show', ['invoice' => $invoice]);
+        return view('pages.invoices.show', ['invoice' => $invoice, 'users' => $this->users]);
     }
 
     /**
@@ -77,7 +77,7 @@ class InvoiceController extends Controller
         $invoice->descripcion_factura = str($request->input('descripcion_factura'))->lower();
         $invoice->total_factura = $request->input('total_factura');
         $invoice->income = $request->input('income');
-        $invoice->iva = $request->input('total_factura') > 0 ? $request->input('total_factura') - ($request->input('total_factura') / 1.15) : 0;
+        $invoice->user_id = $request->input('user_id');
         $invoice->save();
         return redirect()->route('invoices.index')->with('flash.banner', '[' . $invoice->updated_at . '] La factura fue modificada: ' . str($invoice->numero_factura)->upper())->with('flash.bannerStyle', 'success');
     }

@@ -221,6 +221,11 @@
                                         <x-dropdown-link :href="route('profile.show')">
                                             {{ __('Profile') }}
                                         </x-dropdown-link>
+                                        @role('Padre de familia')
+                                            <x-dropdown-link :href="route('my-invoices.show')">
+                                                {{ __('Mis recibos') }}
+                                            </x-dropdown-link>
+                                        @endrole
 
                                         @if (\Laravel\Jetstream\Jetstream::hasApiFeatures())
                                             <x-dropdown-link :href="route('api-tokens.index')">

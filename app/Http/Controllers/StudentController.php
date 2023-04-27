@@ -16,7 +16,7 @@ class StudentController extends Controller
     {
         $this->grades = Grade::pluck('nombre_largo', 'id');
         $this->tutors = User::whereDoesntHave('roles', function ($q) {
-            return $q->where(['role_id' => [1, 2, 3, 4, 6]]);
+            return $q->where(['role_id' => [1, 2, 3, 4, 6, 7]]);
         })->pluck('name', 'id');
         $this->students = Students::class;
     }

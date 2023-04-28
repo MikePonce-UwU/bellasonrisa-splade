@@ -16,7 +16,7 @@
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                     <x-splade-table :for="$invoices">
                         @cell('numero_factura', $invoice)
-                            <span class="font-bold">{{ str($invoice->numero_factura)->lcfirst() }}</span>
+                            <span class="font-bold">{{ str($invoice->numero_factura)->ucfirst() }}</span>
                         @endcell
                         @cell('tipo_factura', $invoice)
                             <span class="text-xs bg-indigo-700 px-2 py-1 rounded shadow-md text-gray-50">{{ str($invoice->tipo_factura)->upper() }}</span>

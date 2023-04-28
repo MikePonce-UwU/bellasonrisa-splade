@@ -54,6 +54,13 @@
                                     </x-nav-link>
                                 @endif
                             @endrole
+                            @role(['Administrador', 'admin', 'Sub-director', 'Director', 'Auxiliar contable'])
+                                @if (\App\MKPonce\MKPonce::supportsInvoicesManagement())
+                                    <x-nav-link :href="route('accountability.show')" :active="request()->routeIs('accountability.show')">
+                                        {{ __('Contabilidad') }}
+                                    </x-nav-link>
+                                @endif
+                            @endrole
                         </div>
                     </div>
 
@@ -99,6 +106,9 @@
 
                                         <x-dropdown-link :href="route('users.index')">
                                             {{ __('Usuarios') }}
+                                        </x-dropdown-link>
+                                        <x-dropdown-link :href="route('user_details.index')">
+                                            {{ __('Detalles de usuario') }}
                                         </x-dropdown-link>
                                         @if (\App\MKPonce\MKPonce::supportsRolesManagement())
                                             <x-dropdown-link :href="route('roles.index')">

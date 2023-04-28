@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_configurations', function (Blueprint $table) {
+        Schema::create('user_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->boolean('habilitado')->nullable()->default(false);
+            $table->double('salario')->nullable();
+            $table->double('adelantos')->nullable();
+            $table->string('rango_horas')->nullable();
+            $table->json('dias_laborales')->nullable();
             $table->timestamps();
         });
 
@@ -22,7 +26,7 @@ return new class extends Migration
             return $q->where(['role_id' => [1, 2, 3, 5, 6, 7]]);
         })->get();
         foreach($users as $user){
-            \App\Models\UserConfiguration::create(['user_id' => $user->id]);
+            \App\Models\UserDetail::create(['user_id' => $user->id]);
         }
     }
 
@@ -31,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_configurations');
+        Schema::dropIfExists('user_details');
     }
 };

@@ -66,14 +66,28 @@ Route::middleware(['splade'])->group(function () {
         Route::group(['middleware' => 'role:Padre de familia|Maestro'], function () {
             Route::get('my-invoices', function () {
                 $invoices = auth()->user()->invoices()->where(['tipo_factura' => 'matricula'])->orWhere(['tipo_factura' => 'arancel'])->orderBy('created_at', 'asc')->get();
-                return view('pages.my-invoices', ['invoices' => \ProtoneMedia\Splade\SpladeTable::for($invoices)
-                    ->column('numero_factura', label: '#')
-                    ->column('razon', label: 'A razón de')
-                    ->column('total_factura', label: 'Total facturado')
-                    ->column('created_at', label: 'Facturado')
-                    ->column('tipo_factura', label: 'Tipo de factura')
+                return view('pages.my-invoices', [
+                    'invoices' => \ProtoneMedia\Splade\SpladeTable::for($invoices)
+                        ->column('numero_factura', label: '#')
+                        ->column('razon', label: 'A razón de')
+                        ->column('total_factura', label: 'Total facturado')
+                        ->column('created_at', label: 'Facturado')
+                        ->column('tipo_factura', label: 'Tipo de factura')
                 ]);
             })->name('my-invoices.show');
+        });
+        Route::group(['middleware' => 'role:Director|Sub-director|Administrador|Auxiliar contable'], function () {
+            Route::get('accountability', function () {
+                $entradas = \App\Models\Invoice::where(['income' => true])->get();
+                $salidas = \App\Models\Invoice::where(['income' => false])->get();
+                return view('pages.accountability', [
+                    'entradas' => $entradas->sum('total_factura'),
+                    'salidas' => $salidas->sum('total_facturas'),
+                ]);
+            })->name('accountability.show');
+        });
+        Route::group(['middleware' => 'role:Director|Administrador'], function () {
+            Route::resource('user_details', \App\Http\Controllers\UserDetailController::class)->only(['index', 'show', 'update']);
         });
     });
 });

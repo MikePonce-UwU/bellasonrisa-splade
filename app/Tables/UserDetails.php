@@ -53,6 +53,8 @@ class UserDetails extends AbstractTable
             ->column('user.name', label: 'Nombre de usuario', sortable: true, searchable: true)
             ->column('rango_horas', label: 'Rango de horas', sortable: true)
             ->column('dias_laborales', label: 'Días que trabaja', sortable: true)
+            ->column('user.subjects.nombre_corto', label: 'Materias', sortable: true)
+            ->column('salario', label: 'Salario total', sortable: true)
             ->rowLink(function(UserDetail $detail){
                 return route('user_details.show', $detail);
             })

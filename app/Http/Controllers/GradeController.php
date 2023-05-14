@@ -29,7 +29,7 @@ class GradeController extends Controller
         ]);
         // return $inputs;
         $grade = Grade::create(['nombre_largo' => $request->input('nombre_largo')]);
-        $grade->asignaturas()->sync($request->input('asignaturas'));
+        $grade->subjects()->sync($request->input('subjects'));
         return redirect()->route('grades.index')->with('flash.banner' , '[' . $grade->created_at . '] Grado creado: ' . $grade->nombre_largo)->with('flash.bannerStyle' , 'success');
     }
 
@@ -55,7 +55,7 @@ class GradeController extends Controller
             'nombre_largo' => 'required|string|unique:grades,nombre_largo,' . $grade->id . '|min:5'
         ]);
         $grade->update(['nombre_largo' => $request->input('nombre_largo')]);
-        $grade->asignaturas()->sync($request->input('asignaturas'));
+        $grade->subjects()->sync($request->input('subjects'));
         return redirect()->route('grades.index')->with('flash.banner', ' ['.$grade->updated_at .'] Grado fue modificado: ' .  $grade->nombre_largo )->with('flash.bannerStyle', 'success');
     }
 

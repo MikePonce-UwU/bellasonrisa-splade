@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            // $table->foreignId('subject_id')->constrained();
             $table->boolean('habilitado')->nullable()->default(false);
             $table->double('salario')->nullable();
             $table->double('adelantos')->nullable();
@@ -22,12 +23,12 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $users = \App\Models\User::whereDoesntHave('roles', function ($q) {
-            return $q->where(['role_id' => [1, 2, 3, 5, 6, 7]]);
-        })->get();
-        foreach($users as $user){
-            \App\Models\UserDetail::create(['user_id' => $user->id]);
-        }
+        // $users = \App\Models\User::whereDoesntHave('roles', function ($q) {
+        //     return $q->where(['role_id' => [1, 2, 3, 5, 6, 7]]);
+        // })->get();
+        // foreach($users as $user){
+        //     \App\Models\UserDetail::create(['user_id' => $user->id]);
+        // }
     }
 
     /**

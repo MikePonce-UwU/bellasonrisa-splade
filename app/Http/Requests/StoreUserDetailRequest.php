@@ -11,7 +11,7 @@ class StoreUserDetailRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreUserDetailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['required', 'unique:user_details,user_id'],
+            'salario' => ['required', 'numeric',],
+            'adelantos' => ['required', 'numeric'],
+            'hora_entrada' => 'required',
+            'hora_salida' => 'required',
+            'dias_laborales' => ['required', 'array', 'min:3'],
+            'materias' => ['required', 'array', 'min:1'],
         ];
     }
 }

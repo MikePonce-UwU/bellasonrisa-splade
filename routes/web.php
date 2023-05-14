@@ -65,7 +65,7 @@ Route::middleware(['splade'])->group(function () {
         });
         Route::group(['middleware' => 'role:Padre de familia|Maestro'], function () {
             Route::get('my-invoices', function () {
-                $invoices = auth()->user()->invoices()->where(['tipo_factura' => 'matricula'])->orWhere(['tipo_factura' => 'arancel'])->orderBy('created_at', 'asc')->get();
+                $invoices = auth()->user()->invoices()->where(['tipo_factura' => 'matricula'])->orWhere(['tipo_factura' => 'arancel'])->orderBy('created_at', 'desc')->get();
                 return view('pages.my-invoices', [
                     'invoices' => \ProtoneMedia\Splade\SpladeTable::for($invoices)
                         ->column('numero_factura', label: '#')
@@ -82,12 +82,16 @@ Route::middleware(['splade'])->group(function () {
                 $salidas = \App\Models\Invoice::where(['income' => false])->get();
                 return view('pages.accountability', [
                     'entradas' => $entradas->sum('total_factura'),
-                    'salidas' => $salidas->sum('total_facturas'),
+                    'salidas' => $salidas->sum('total_factura'),
                 ]);
             })->name('accountability.show');
         });
         Route::group(['middleware' => 'role:Director|Administrador'], function () {
-            Route::resource('user_details', \App\Http\Controllers\UserDetailController::class)->only(['index', 'show', 'update']);
+            Route::resource('user_details', \App\Http\Controllers\UserDetailController::class)->only(['index', 'store', 'show', 'update']);
+        });
+        Route::group(['middleware' => 'role:Maestro|Administrador'], function () {
+            Route::resource('calificaciones', \App\Http\Controllers\ScoreController::class)->only(['index', 'store']);
+
         });
     });
 });

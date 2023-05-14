@@ -14,7 +14,7 @@
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                     <x-splade-form :default="$grade" method="put" :action="route('grades.update', $grade)">
                         <x-splade-input name="nombre_largo" class="mb-2" label="Nombre del grado" />
-                        <x-splade-select label="Seleccione las clases que el grado ve:" name="asignaturas" :options="$subjects" option-label="nombre_corto" option-key="id" multiple choices relation placeholder="Selecciona las asignaturas" />
+                        <x-splade-select label="Seleccione las clases que el grado ve:" name="subjects" :options="$subjects" option-label="nombre_corto" option-key="id" multiple choices relation placeholder="Selecciona las asignaturas" />
                         <x-splade-submit secondary label="Modificar ahora" class="mt-2" />
                         <x-splade-button @click.prevent="form.restore">Restaurar a los datos originales
                         </x-splade-button>

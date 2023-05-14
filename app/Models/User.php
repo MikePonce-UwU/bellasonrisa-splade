@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -78,8 +80,16 @@ class User extends Authenticatable
     {
         return $this->invoices()->one()->ofMany('numero_factura');
     }
-    public function userConfiguration(): HasOne
+    public function userDetail(): HasOne
     {
-        return $this->hasOne(UserConfiguration::class);
+        return $this->hasOne(UserDetail::class);
     }
+    public function subjects(): BelongsToMany
+    {
+        return $this->belongsToMany(Subject::class, table: 'subject_teacher', foreignPivotKey: 'teacher_id');
+    }
+    // public function grades():HasManyThrough
+    // {
+    //     return $this->through('subjects')->has('grades');
+    // }
 }

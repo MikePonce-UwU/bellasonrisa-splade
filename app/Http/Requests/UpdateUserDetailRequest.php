@@ -23,12 +23,12 @@ class UpdateUserDetailRequest extends FormRequest
     {
         return [
             //
-            'user_id',
-            'salario',
-            'adelantos',
-            'hora_entrada',
-            'hora_salida',
-            'dias_laborales',
+            'salario' => ['required', 'numeric',],
+            'adelantos' => ['required', 'numeric'],
+            'hora_entrada' => 'required',
+            'hora_salida' => 'required',
+            'dias_laborales' => ['required', 'array', 'min:3'],
+            'materias' => ['required', 'array', 'min:1'],
         ];
     }
 }

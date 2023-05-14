@@ -15,16 +15,19 @@ class Student extends Model
     protected $fillable = [
         'nombre_completo', 'fecha_nacimiento', 'cedula', 'telefono', 'sexo', 'grade_id', 'tutor_id', 'lugar_nacimiento', 'direccion', 'expediente_medico', 'codigo_estudiante'
     ];
-    protected $casts= [
+    protected $casts = [
         'fecha_nacimiento' => 'date'
     ];
-    public function grade(): BelongsTo{
+    public function grade(): BelongsTo
+    {
         return $this->belongsTo(Grade::class);
     }
-    public function tutor(): BelongsTo{
+    public function tutor(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
-    public function subjects():BelongsToMany{
+    public function subjects(): BelongsToMany
+    {
         return $this->belongsToMany(Subject::class)->as('notas')->withPivot([
             'nota_i_corte',
             'nota_ii_corte',

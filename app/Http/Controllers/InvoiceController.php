@@ -45,6 +45,7 @@ class InvoiceController extends Controller
             'total_factura' => $request->input('total_factura'),
             'income' => $request->input('income'),
             'user_id' => $request->input('user_id'),
+            'tipo_factura' => $request->input('tipo_factura'),
         ]);
         return redirect()->route('invoices.index')->with('flash.banner', '[' . $invoice->created_at . '] La factura fue creada: ' . str($invoice->numero_factura)->upper())->with('flash.bannerStyle', 'success');
     }
@@ -78,6 +79,7 @@ class InvoiceController extends Controller
         $invoice->total_factura = $request->input('total_factura');
         $invoice->income = $request->input('income');
         $invoice->user_id = $request->input('user_id');
+        $invoice->tipo_factura = $request->input('tipo_factura');
         $invoice->save();
         return redirect()->route('invoices.index')->with('flash.banner', '[' . $invoice->updated_at . '] La factura fue modificada: ' . str($invoice->numero_factura)->upper())->with('flash.bannerStyle', 'success');
     }

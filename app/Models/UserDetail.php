@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class UserDetail extends Model
 {
+    public $table="user_details";
     protected $fillable = [
         'user_id',
         'salario',
@@ -23,4 +25,7 @@ class UserDetail extends Model
     {
         return $this->belongsTo(User::class);
     }
+    // public function subjects(): HasManyThrough{
+    //     return $this->through('user')->has('subjects');
+    // }
 }

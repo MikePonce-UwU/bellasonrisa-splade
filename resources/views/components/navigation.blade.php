@@ -61,6 +61,13 @@
                                     </x-nav-link>
                                 @endif
                             @endrole
+                            @role(['Administrador', 'admin', 'Maestro'])
+                                @if (\App\MKPonce\MKPonce::supportsInvoicesManagement())
+                                    <x-nav-link :href="route('calificaciones.index')" :active="request()->routeIs('calificaciones.index')">
+                                        {{ __('Calificaciones') }}
+                                    </x-nav-link>
+                                @endif
+                            @endrole
                         </div>
                     </div>
 

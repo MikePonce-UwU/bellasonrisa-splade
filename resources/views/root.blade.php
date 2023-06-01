@@ -4,10 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        @livewireStyles
         @spladeHead
         @vite('resources/js/app.js')
     </head>
     <body class="font-sans antialiased">
         @splade
+        @livewireScripts
     </body>
 </html>

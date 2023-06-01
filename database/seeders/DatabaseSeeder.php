@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $user = \App\Models\User::find(1);
-        $user->roles()->sync(Role::all());
+        $user->roles()->sync([1, 2, 3, 4, 5, 7,]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Mike Ponce',

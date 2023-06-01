@@ -90,7 +90,7 @@ Route::middleware(['splade'])->group(function () {
             Route::resource('user_details', \App\Http\Controllers\UserDetailController::class)->only(['index', 'store', 'show', 'update']);
         });
         Route::group(['middleware' => 'role:Maestro|Administrador'], function () {
-            Route::resource('calificaciones', \App\Http\Controllers\ScoreController::class)->only(['index', 'store']);
+            Route::get('calificaciones', \App\Http\Livewire\CalificacionesController::class)->name('calificaciones.index');
 
         });
     });
